@@ -38,8 +38,15 @@ namespace MvcMovies.Controllers
             {
                 return NotFound();
             }
-            var Movie = await _context.Movies.FirstAsync(m => m.MovieID == actor.MovieId);
-            ViewBag.Movie = Movie.Name;
+            try
+            {
+                var Movie = await _context.Movies.FirstAsync(m => m.MovieID == actor.MovieId);
+                ViewBag.Movie = Movie.Name;
+            }
+            catch
+            {
+                
+            }
             return View(actor);
         }
 
